@@ -9,10 +9,11 @@ platforms:
   - name: ubuntu-12.04
 
 suites:
-  - name: default
+  - name: fixture
     run_list:
-      - recipe[test::setup]
+      - recipe[golang-web::fixture]
+      - recipe[golang-web::deploy]
     attributes:
       deploy:
-        env:
-          HELLO_WORLD: "Hello world"
+        s3zip:
+          deploy_to: "/apps/s3zip"
